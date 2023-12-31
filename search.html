@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Image Search</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .search-form {
+      display: flex;
+      margin-bottom: 20px;
+    }
+    .search-input {
+      flex: 1;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+    }
+    .search-button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+    .image-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .image-item {
+      margin: 10px;
+    }
+    .image-item img {
+      max-width: 200px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Image Search</h1>
+    <form class="search-form">
+      <input type="text" class="search-input" placeholder="Enter a search term">
+      <button type="submit" class="search-button">Search</button>
+    </form>
+    <div class="image-list"></div>
+  </div>
+
+  <script>
+    document.querySelector('.search-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+      var searchTerm = document.querySelector('.search-input').value;
+      searchImages(searchTerm);
+    });
+
+    function searchImages(searchTerm) {
+      var apiKey = 'YOUR_API_KEY'; // Replace with your own API key
+      var apiUrl = 'https://api.unsplash.com/search/photos?query=' + searchTerm + '&client_id=' + apiKey;
+
+      fetch(apiUrl)
+        .then(function(response) {
+          return response.json();
+        })
+        .then(function(data) {
+          displayImages(data.results);
+        })
+        .catch(function(error) {
+          console.log('Error:', error);
+        });
+    }
+
+    function displayImages(images) {
+      var imageList = document.querySelector('.image-list');
+      imageList.innerHTML = '';
+
+      images.forEach(function(image) {
+        var imageItem = document.createElement('div');
+        imageItem.className = 'image-item';
+
+        var img = document.createElement('img');
+        img.src = image.urls.small;
+        img.alt = image.alt_description;
+
+        imageItem.appendChild(img);
+        imageList.appendChild(imageItem);
+      });
+    }
+  </script>
+</body>
+</html>
