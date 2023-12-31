@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> asheeshsurface Create Account</title>
+  <style>
+    body {
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 60px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+}
+
+form input {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+form button {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  border-radius: 5px;
+  border: none;
+  background-color: peru;
+  color: #fff;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: coral;
+}
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Create an Account <br>in asheeshsurface</h1>
+    <form id="signup-form">
+      <input type="text" id="fullname" placeholder="Full Name" required>
+      <input type="email" id="email" placeholder="Email Address" required>
+      <input type="password" id="password" placeholder="Password" required>
+      <button type="submit">Sign Up</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('signup-form').addEventListener('submit', function (e) {
+  e.preventDefault(); // Prevent form submission
+
+  // Get form values
+  var fullName = document.getElementById('fullname').value;
+  var email = document.getElementById('email').value;
+  var password = document.getElementById('password').value;
+
+  // Perform form validation
+  if (fullName.trim() === '' || email.trim() === '' || password.trim() === '') {
+    alert('Please fill in all fields');
+    return;
+  }
+
+  // Perform further processing (e.g., form submission to a server, database operations)
+  // You would need to implement this part using server-side code
+
+  // Reset form fields
+  document.getElementById('fullname').value = '';
+  document.getElementById('email').value = '';
+  document.getElementById('password').value = '';
+
+  alert('Account created successfully!');
+});
+
+  </script>
+</body>
+
+</html>
